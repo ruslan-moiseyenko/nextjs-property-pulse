@@ -1,11 +1,15 @@
 import React from "react";
-import propertiesDB from "@/data/properties.json";
 import { PropertyCard } from "@/components/PropertyCard";
 import Link from "next/link";
+import { fetchProperties } from "@/utils/requests";
 
-export const HomeProperties = () => {
-  const resentProperties = propertiesDB
-    .sort(() => Math.random() - Math.random())
+export const HomeProperties = async () => {
+  const properties = await fetchProperties();
+
+  properties?.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+
+  const resentProperties = properties
+    ?.sort(() => Math.random() - Math.random())
     .slice(0, 3);
   return (
     <div>
@@ -15,10 +19,10 @@ export const HomeProperties = () => {
             Recent Properties
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {resentProperties.length === 0 ? (
+            {resentProperties?.length === 0 ? (
               <p>Nothing found</p>
             ) : (
-              resentProperties.map((item) => (
+              resentProperties?.map((item) => (
                 <PropertyCard key={item._id} property={item} />
               ))
             )}
