@@ -64,7 +64,7 @@ export const PropertyDetails: FC<PropertyInfoType> = ({ property }) => {
         <div className="mb-4 flex justify-center gap-4 space-x-9 text-xl text-blue-500">
           <p>
             <FaBed className="mr-2 inline-block" />
-            {property.beds}
+            {`${property.beds} `}
             <span className="hidden sm:inline">Beds</span>
           </p>
           <p>
