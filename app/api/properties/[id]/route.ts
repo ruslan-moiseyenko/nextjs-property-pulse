@@ -4,11 +4,11 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 export const GET = async (request: Request, context: { params: Params }) => {
   const id = context.params.id;
-  console.log("🚀 ~ GET ~ id:", id);
+
   try {
     await connectDB();
 
-    const property = await Property.find({ _id: id });
+    const property = await Property.findOne({ _id: id });
 
     if (!property) return new Response("Property not found", { status: 404 });
 

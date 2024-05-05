@@ -21,7 +21,9 @@ export async function fetchProperties(): Promise<PropertyType[] | undefined> {
 
 //fetch single property
 
-export async function fetchProperty(id: string): Promise<PropertyType | null> {
+export async function fetchPropertyById(
+  id: string,
+): Promise<PropertyType | null> {
   if (!apiDomain) return null;
 
   try {
