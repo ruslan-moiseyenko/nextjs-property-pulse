@@ -25,7 +25,9 @@ export const Navbar = () => {
     setAuthProviders();
   }, []);
 
-  // console.log(providers);
+  useEffect(() => {
+    console.log(status, session);
+  }, [session, status]);
 
   return (
     <nav className="border-b border-blue-500 bg-blue-700">

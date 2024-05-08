@@ -30,7 +30,8 @@
     ".next/types/**/*.ts",
     "tailwind.config.{js,cjs,mjs,ts}",
     "models/Property.js",
-    "models/User.js"
+    "models/User.js",
+    "utils/authOptions.ts"
   ],
   "exclude": ["node_modules"]
 }
