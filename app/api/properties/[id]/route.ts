@@ -14,7 +14,6 @@ export const GET = async (request: Request, context: { params: Params }) => {
 
     return new Response(JSON.stringify(property), { status: 200 });
   } catch (err) {
-    console.log(err);
     return new Response("Something went wrong...", { status: 500 });
   }
 };

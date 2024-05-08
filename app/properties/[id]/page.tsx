@@ -21,10 +21,9 @@ const PropertyPage = () => {
       if (!id) return;
       try {
         const propertyData = await fetchPropertyById(id);
-        console.log("🚀 ~ fetchPropertyData ~ propertyData:", propertyData);
         setProperty(propertyData);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setLoading(false);
       }

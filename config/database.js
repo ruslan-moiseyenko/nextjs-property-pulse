@@ -12,12 +12,12 @@ const connectDB = async () => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
-      useNewUrlParser: true
+      useNewUrlParser: true,
     });
     connected = true;
     console.log("MongoDB is connected...");
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

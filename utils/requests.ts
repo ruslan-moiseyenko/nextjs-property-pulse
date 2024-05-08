@@ -14,7 +14,7 @@ export async function fetchProperties(): Promise<PropertyType[] | undefined> {
 
     return res.json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return [];
   }
 }
@@ -34,7 +34,7 @@ export async function fetchPropertyById(
 
     return res.json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return null;
   }
 }

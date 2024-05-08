@@ -1,6 +1,13 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
+export interface Profile {
+  sub?: string;
+  name?: string;
+  email?: string;
+  image?: string;
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -17,9 +24,9 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     // invoked on successful signing
-    async signIn({ profile }) {
+    async signIn({ profile }): Promise<string | boolean> {
       //TODO:connect, check for the user, add if needed, return "true"
-      return profile;
+      return JSON.stringify(profile);
     },
 
     //modifies teh session object

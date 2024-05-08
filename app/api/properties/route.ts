@@ -9,7 +9,6 @@ export const GET = async (request: Request) => {
 
     return new Response(JSON.stringify(properties), { status: 200 });
   } catch (err) {
-    console.log(err);
     return new Response("Something went wrong...", { status: 500 });
   }
 };
