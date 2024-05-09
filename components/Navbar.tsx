@@ -28,8 +28,8 @@ export const Navbar = () => {
   }, []);
 
   // useEffect(() => {
-  //   console.log(status, session);
-  // }, [session, status]);
+  //   console.log("Providers: ", providers, session);
+  // }, [session, providers]);
 
   return (
     <nav className="border-b border-blue-500 bg-blue-700">
@@ -110,6 +110,7 @@ export const Navbar = () => {
           <div className="hidden md:ml-6 md:block">
             <div className="flex items-center">
               {!!providers &&
+                !session &&
                 Object.values(providers).map((provider, index) => (
                   <button
                     key={index}
@@ -192,6 +193,7 @@ export const Navbar = () => {
                   role="menuitem"
                   tabIndex={-1}
                   id="user-menu-item-0"
+                  onClick={() => setIsProfileMenuOpen(false)}
                 >
                   Your Profile
                 </Link>
@@ -209,6 +211,10 @@ export const Navbar = () => {
                   role="menuitem"
                   tabIndex={-1}
                   id="user-menu-item-2"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    signOut();
+                  }}
                 >
                   Sign Out
                 </button>
