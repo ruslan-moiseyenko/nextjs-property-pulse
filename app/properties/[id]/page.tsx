@@ -7,6 +7,7 @@ import { PropertyType } from "@/components/PropertyCard";
 import { PropertyHeaderImage } from "@/components/PropertyHeaderImage";
 import Link from "next/link";
 import { PropertyInfo } from "@/components/PropertyInfo";
+import { PropertyImages } from "@/components/PropertyImages";
 
 import { FaArrowLeft } from "react-icons/fa";
 import { Spinner } from "@/components/Spiner";
@@ -60,6 +61,7 @@ const PropertyPage = () => {
             </div>
           </section>
           <PropertyInfo property={property} />
+          <PropertyImages images={property.images} />
         </>
       )}
     </>

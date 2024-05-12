@@ -11,7 +11,7 @@ export const PropertyHeaderImage: FC<PropertyImageHeaderType> = ({ image }) => {
       <div className="container-xl m-auto">
         <div className="grid grid-cols-1">
           <Image
-            src={`/images/properties/${image}`}
+            src={image}
             alt=""
             className="h-[400px] w-full object-cover"
             width={0}
