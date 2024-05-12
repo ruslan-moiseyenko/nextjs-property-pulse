@@ -1,29 +1,62 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { FormEvent, useState } from "react";
 
-const initialFieldsState = {
-  type: "",
-  name: "",
-  description: "",
+interface Location {
+  street: string;
+  city: string;
+  state: string;
+  zipcode: string;
+}
+
+interface Rates {
+  weekly: string;
+  monthly: string;
+  nightly: string;
+}
+
+interface SellerInfo {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+interface PropertyData {
+  type: string;
+  name: string;
+  description: string;
+  location: Location;
+  beds: string;
+  baths: string;
+  square_feet: string;
+  amenities: string[];
+  rates: Rates;
+  seller_info: SellerInfo;
+  images: File[];
+}
+const initialFieldsState: PropertyData = {
+  type: "alhhjhj",
+  name: "dfghn dfghd ghd fgh",
+  description: " adfasd feacatartasdf",
   location: {
-    street: "",
-    city: "",
-    state: "",
-    zipcode: "",
+    street: "Petr",
+    city: "Varna",
+    state: "Bulgaria",
+    zipcode: "255055",
   },
-  beds: "",
-  baths: "",
-  square_feet: "",
+  beds: "5",
+  baths: "3",
+  square_feet: "50",
   amenities: ["Free Parking"],
   rates: {
-    weekly: "",
-    monthly: "",
-    nightly: "",
+    weekly: "121",
+    monthly: "12323",
+    nightly: "231",
   },
   seller_info: {
-    name: "",
-    email: "",
-    phone: "",
+    name: "DDDffdf",
+    email: "asdfj@dfkjdf.ks",
+    phone: "095952326",
   },
   images: [],
 };
@@ -39,7 +72,8 @@ const propertyTypes = [
 ];
 
 export const PropertyAddForm = () => {
-  const [fields, setFields] = useState(initialFieldsState);
+  const [fields, setFields] = useState<PropertyData>(initialFieldsState);
+  const router = useRouter();
 
   const handleAmenitiesChange = (event: React.ChangeEvent<EventTarget>) => {
     const { value, checked } = event.target as HTMLInputElement;
@@ -76,10 +110,8 @@ export const PropertyAddForm = () => {
       setFields((prevFields) => ({
         ...prevFields,
         [outerKey]: {
-          ...(prevFields[outerKey as keyof typeof prevFields] as Record<
-            string,
-            string
-          >),
+          //@ts-ignore
+          ...prevFields[outerKey],
           [innerKey]: value,
         },
       }));
@@ -92,19 +124,19 @@ export const PropertyAddForm = () => {
     }
   };
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
+  const handleImageChange = (event: React.ChangeEvent<EventTarget>) => {
+    const { files } = event.target as HTMLInputElement;
 
     if (files) {
       // Convert FileList to array
       const filesArray = Array.from(files) as File[];
 
       // Clone images array
-      const updatedImages = [...fields.images];
+      const updatedImages = [...fields.images] as File[];
 
       // Add new files to the array
       filesArray.forEach((file) => {
-        updatedImages.push(file.name);
+        updatedImages.push(file);
       });
 
       // Update state with array of images
@@ -115,8 +147,24 @@ export const PropertyAddForm = () => {
     }
   };
 
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    try {
+      const response = await fetch("/api/properties", {
+        method: "POST",
+        body: formData,
+      });
+
+      router.push(response.url);
+    } catch (error) {
+      throw new Error("Some error occured during saving data to DB");
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2 className="mb-6 text-center text-3xl font-semibold">Add Property</h2>
 
       <div className="mb-4">
@@ -508,7 +556,7 @@ export const PropertyAddForm = () => {
         <input
           type="text"
           id="seller_name"
-          name="seller_info.name."
+          name="seller_info.name"
           className="w-full rounded border px-3 py-2"
           placeholder="Name"
           value={fields.seller_info.name}

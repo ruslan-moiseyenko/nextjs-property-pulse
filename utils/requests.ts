@@ -7,7 +7,7 @@ export async function fetchProperties(): Promise<PropertyType[] | undefined> {
   if (!apiDomain) return [];
 
   try {
-    const res = await fetch(`${apiDomain}properties`);
+    const res = await fetch(`${apiDomain}properties`, { cache: "no-store" });
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
