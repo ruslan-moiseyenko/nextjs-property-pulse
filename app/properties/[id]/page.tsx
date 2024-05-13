@@ -10,7 +10,7 @@ import { PropertyInfo } from "@/components/PropertyInfo";
 import { PropertyImages } from "@/components/PropertyImages";
 
 import { FaArrowLeft } from "react-icons/fa";
-import { Spinner } from "@/components/Spiner";
+import { Spinner } from "@/components/Spinner";
 
 const PropertyPage = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,5 +1,5 @@
 "use client";
-import { Spinner } from "@/components/Spiner";
+import { Spinner } from "@/components/Spinner";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 
