@@ -22,21 +22,21 @@ export type PropertyType = {
     state: string;
     zipcode: string;
   };
-  beds: number;
-  baths: number;
-  square_feet: number;
+  beds: number | string;
+  baths: number | string;
+  square_feet: string;
   amenities: string[];
   rates: {
-    weekly?: number;
-    monthly?: number;
-    nightly?: number;
+    weekly?: string;
+    monthly?: string;
+    nightly?: string;
   };
   seller_info: {
     name: string;
     email: string;
     phone: string;
   };
-  images: string[];
+  images: File[];
   is_featured: boolean;
   createdAt: string;
   updatedAt: string;
@@ -62,7 +62,7 @@ export const PropertyCard: FC<PropertyPageType> = ({ property }) => {
   return (
     <div className="relative rounded-xl shadow-md">
       <Image
-        src={property.images[0]}
+        src={property.images[0].toString()}
         alt=""
         height={0}
         width={0}

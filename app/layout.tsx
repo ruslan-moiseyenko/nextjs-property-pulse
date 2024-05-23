@@ -18,7 +18,10 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   return (
     <AuthProvider>
       <html lang="en">
-        <body suppressHydrationWarning={true}>
+        <body
+          suppressHydrationWarning={true}
+          className="flex min-h-screen flex-col"
+        >
           <Navbar />
           <main>{children}</main>
           <Footer />

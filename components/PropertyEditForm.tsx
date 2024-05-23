@@ -1,92 +1,62 @@
 "use client";
-import { PropertyType } from "@/components/PropertyCard";
+
+import { ShortPropertyType, propertyTypes } from "@/components/PropertyAddForm";
 import { Spinner } from "@/components/Spinner";
-import { useRouter } from "next/navigation";
-import React, { FormEvent, useState } from "react";
+import { useRouter, useParams } from "next/navigation";
+import React, { FormEvent, useEffect, useState } from "react";
+import { fetchPropertyById } from "@/utils/requests";
+import { toast } from "react-toastify";
 
-export interface Location {
-  street: string;
-  city: string;
-  state: string;
-  zipcode: string;
-}
-
-export interface Rates {
-  weekly: string;
-  monthly: string;
-  nightly: string;
-}
-
-export interface SellerInfo {
-  name: string;
-  email: string;
-  phone: string;
-}
-
-export interface PropertyData {
-  type: string;
-  name: string;
-  description: string;
-  location: Location;
-  beds: string;
-  baths: string;
-  square_feet: string;
-  amenities: string[];
-  rates: Rates;
-  seller_info: SellerInfo;
-  images: File[];
-}
-
-export type ShortPropertyType = Omit<
-  PropertyType,
-  "_id" | "owner" | "is_featured" | "createdAt" | "updatedAt"
->;
 const initialFieldsState: ShortPropertyType = {
-  name: "Historic Downtown Loft",
-  type: "Apartment",
-  description: "Step back in time with a stay in this historic downtown loft.",
+  name: "",
+  type: "",
+  description: "",
   location: {
-    street: "123 History Lane",
-    city: "Philadelphia",
-    state: "PA",
-    zipcode: "19101",
+    street: "",
+    city: "",
+    state: "",
+    zipcode: "",
   },
-  beds: "2",
-  baths: "1",
-  square_feet: "1200",
-  amenities: [
-    "High-Speed Internet",
-    "Air Conditioning",
-    "Smart TV",
-    "Coffee Maker",
-  ],
+  beds: "",
+  baths: "",
+  square_feet: "",
+  amenities: ["", "", "", ""],
   rates: {
-    weekly: "550",
-    monthly: "2100",
+    weekly: "",
+    monthly: "",
     nightly: "",
   },
   seller_info: {
-    name: "Matthew Harris",
-    email: "matthew@gmail.com",
-    phone: "215-555-5555",
+    name: "",
+    email: "",
+    phone: "",
   },
   images: [],
 };
 
-export const propertyTypes = [
-  "Apartment",
-  "Condo",
-  "House",
-  "Cabin Or Cottage",
-  "Room",
-  "Studio",
-  "Other",
-];
-
-export const PropertyAddForm = () => {
+export const PropertyEditForm = () => {
   const [fields, setFields] = useState<ShortPropertyType>(initialFieldsState);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams();
   const router = useRouter();
+
+  useEffect(() => {
+    // Fetch property by ID
+    (async () => {
+      try {
+        const propertyData = await fetchPropertyById(id as string);
+
+        if (propertyData) {
+          setFields(propertyData);
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [id]);
 
   const handleAmenitiesChange = (event: React.ChangeEvent<EventTarget>) => {
     const { value, checked } = event.target as HTMLInputElement;
@@ -162,21 +132,40 @@ export const PropertyAddForm = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsLoading(true);
-
-    const formData = new FormData(event.currentTarget);
+    // setIsLoading(true);
 
     try {
-      const response = await fetch("/api/properties", {
-        method: "POST",
+      const formData = new FormData(event.currentTarget);
+      const response = await fetch(`/api/properties/${id}`, {
+        method: "PUT",
         body: formData,
       });
 
-      router.push(response.url);
+      if (response.status === 200) {
+        router.push(`/properties/${id}`);
+      } else if (response.status === 401 || response.status === 403) {
+        toast.error("Permission denied");
+      } else {
+        toast.error("Something went wrong");
+      }
     } catch (error) {
-      setIsLoading(false);
-      throw new Error("Some error occured during saving data to DB");
+      console.error("🚀 ~ handleSubmit ~ error: ", error);
+      toast.error("Something went wrong");
     }
+
+    // const formData = new FormData(event.currentTarget);
+
+    // try {
+    //   const response = await fetch("/api/properties", {
+    //     method: "POST",
+    //     body: formData,
+    //   });
+
+    //   router.push(response.url);
+    // } catch (error) {
+    //   setIsLoading(false);
+    //   throw new Error("Some error occured during saving data to DB");
+    // }
     //setIsLoading(false);
   };
 
@@ -187,7 +176,7 @@ export const PropertyAddForm = () => {
       ) : (
         <form onSubmit={handleSubmit}>
           <h2 className="mb-6 text-center text-3xl font-semibold">
-            Add Property
+            Edit Property
           </h2>
 
           <div className="mb-4">
@@ -551,7 +540,7 @@ export const PropertyAddForm = () => {
                   id="weekly_rate"
                   name="rates.weekly"
                   className="w-full rounded border px-3 py-2"
-                  value={fields.rates.weekly}
+                  value={fields.rates.weekly || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -564,7 +553,7 @@ export const PropertyAddForm = () => {
                   id="monthly_rate"
                   name="rates.monthly"
                   className="w-full rounded border px-3 py-2"
-                  value={fields.rates.monthly}
+                  value={fields.rates.monthly || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -577,7 +566,7 @@ export const PropertyAddForm = () => {
                   id="nightly_rate"
                   name="rates.nightly"
                   className="w-full rounded border px-3 py-2"
-                  value={fields.rates.nightly}
+                  value={fields.rates.nightly || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -660,7 +649,7 @@ export const PropertyAddForm = () => {
               className="focus:shadow-outline w-full rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
               type="submit"
             >
-              Add Property
+              Update Property
             </button>
           </div>
         </form>
