@@ -1,4 +1,5 @@
 import { PropertyInfoType } from "@/components/PropertyInfo";
+import { PropertyMap } from "@/components/PropertyMap";
 import React, { FC } from "react";
 import {
   FaBed,
@@ -94,6 +95,7 @@ export const PropertyDetails: FC<PropertyInfoType> = ({ property }) => {
       <div className="mt-6 rounded-lg bg-white p-6 shadow-md">
         <div id="map"></div>
       </div>
+      <PropertyMap property={property} />
     </main>
   );
 };
