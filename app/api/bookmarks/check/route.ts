@@ -26,31 +26,11 @@ export const POST = async (request: Request) => {
 
     let isBookmarked = user?.bookmarks?.includes(propertyId);
 
-    let message: string;
-    // toggle bookmarks
-    if (isBookmarked) {
-      // If already bookmarked, remove it
-      user.bookmarks?.pull(propertyId);
-      message = "Bookmark removed successfully";
-      isBookmarked = false;
-    } else {
-      // If not bookmarked, add it
-      // console.log("🚀 ~ POST ~ user:", user);
-      if (!user.bookmarks) {
-        user.bookmarks = [];
-      }
-      user.bookmarks.push(propertyId);
-      message = "Bookmark added successfully";
-      isBookmarked = true;
-    }
-
-    await user.save();
-
-    return new Response(JSON.stringify({ message, isBookmarked }), {
+    return new Response(JSON.stringify({ isBookmarked }), {
       status: 200,
     });
   } catch (error) {
-    console.log("🚀 ~ POST ~ error:", error);
+    console.log("🚀 ~ POST check ~ error:", error);
     return new Response("Something went wrong", { status: 500 });
   }
 };

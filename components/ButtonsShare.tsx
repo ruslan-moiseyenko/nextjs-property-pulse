@@ -1,6 +1,6 @@
-import { PropertyType } from "@/components/PropertyCard";
 import React, { FC, ReactNode } from "react";
 import { FaShare } from "react-icons/fa";
+import { PropertyType } from "@/components/PropertyCard";
 
 type ButtonsShareProps = {
   children: ReactNode | ReactNode[];

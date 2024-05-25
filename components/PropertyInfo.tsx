@@ -18,9 +18,7 @@ export const PropertyInfo: FC<PropertyInfoType> = ({ property }) => {
 
           {/* <!-- Sidebar --> */}
           <aside className="space-y-4">
-            <ButtonBookmark property={property}>
-              Bookmark Property
-            </ButtonBookmark>
+            <ButtonBookmark property={property} />
             <ButtonsShare property={property} isPrimary={false}>
               Share Property
             </ButtonsShare>
