@@ -48,7 +48,7 @@ const PropertyPage = () => {
       {loading && <Spinner loading={loading} />}
       {!loading && property && (
         <>
-          <PropertyHeaderImage image={property?.images?.[0]} />
+          <PropertyHeaderImage image={property?.images?.[0].toString()} />
           <section>
             <div className="container m-auto px-6 py-6">
               <Link

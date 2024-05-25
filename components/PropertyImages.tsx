@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 type PropertyImagesProps = {
-  images: string[];
+  images: File[];
 };
 
 export const PropertyImages: FC<PropertyImagesProps> = ({ images }) => {
@@ -13,8 +13,8 @@ export const PropertyImages: FC<PropertyImagesProps> = ({ images }) => {
         <div className="container mx-auto">
           {images.length === 1 ? (
             <Item
-              original={images[0]}
-              thumbnail={images[0]}
+              original={images[0].toString()}
+              thumbnail={images[0].toString()}
               width="1000"
               height="600"
             >
@@ -22,7 +22,7 @@ export const PropertyImages: FC<PropertyImagesProps> = ({ images }) => {
                 <Image
                   ref={ref}
                   onClick={open}
-                  src={images[0]}
+                  src={images[0].toString()}
                   alt=""
                   className="mx-auto h-[400px] rounded-xl object-cover"
                   width={1800}
@@ -45,8 +45,8 @@ export const PropertyImages: FC<PropertyImagesProps> = ({ images }) => {
                 `}
                 >
                   <Item
-                    original={image}
-                    thumbnail={image}
+                    original={image.toString()}
+                    thumbnail={image.toString()}
                     width="1000"
                     height="600"
                   >
@@ -54,7 +54,7 @@ export const PropertyImages: FC<PropertyImagesProps> = ({ images }) => {
                       <Image
                         ref={ref}
                         onClick={open}
-                        src={image}
+                        src={image.toString()}
                         alt=""
                         className="h-[400px] w-full rounded-xl object-cover"
                         width={0}
