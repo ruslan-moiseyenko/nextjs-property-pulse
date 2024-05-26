@@ -12,7 +12,6 @@ type ButtonBookmarkProps = {
 
 export const ButtonBookmark: FC<ButtonBookmarkProps> = ({ property }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  console.log("🚀 ~ isBookmarked:", isBookmarked);
   const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
   const userId = session?.user.id;
