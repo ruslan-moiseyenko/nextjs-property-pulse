@@ -1,8 +1,10 @@
 "use client";
 
 import { PropertyType } from "@/components/PropertyCard";
+import { useSession } from "next-auth/react";
 import React, { FC } from "react";
 import { FaPaperPlane } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 type PropertyContactFormProps = {
   property: PropertyType;
@@ -17,7 +19,9 @@ export const PropertyContactForm: FC<PropertyContactFormProps> = ({
   const [phone, setPhone] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { data: session } = useSession();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = {
@@ -26,16 +30,44 @@ export const PropertyContactForm: FC<PropertyContactFormProps> = ({
       message,
       phone,
       recipient: property.owner,
-      property: property._id,
+      propertyId: property._id,
     };
-    console.log("🚀 ~ handleSubmit ~ data:", data);
-    setIsSubmitted(true);
+
+    try {
+      const response = await fetch("/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.status === 200) {
+        toast.success("Message sent successfully");
+        setIsSubmitted(true);
+      } else if (response.status === 400 || response.status === 401) {
+        const responseData = await response.json();
+        toast.error(responseData?.message);
+      } else {
+        toast.error("Error sending message");
+      }
+    } catch (error) {
+      console.log("🚀 ~ handleSubmit ~ error:", error);
+      toast.error("Error sending message");
+    } finally {
+      setName("");
+      setEmail("");
+      setMessage("");
+      setPhone("");
+    }
   };
 
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
       <h3 className="mb-6 text-xl font-bold">Contact Property Manager</h3>
-      {isSubmitted ? (
+      {!session ? (
+        <p className="mb-4 text-red-500">Please login to send a message</p>
+      ) : isSubmitted ? (
         <p className="mb-4 text-green-500">Your message has been sent!</p>
       ) : (
         <form onSubmit={handleSubmit}>
