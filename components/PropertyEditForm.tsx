@@ -7,7 +7,7 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { fetchPropertyById } from "@/utils/requests";
 import { toast } from "react-toastify";
 
-const initialFieldsState: ShortPropertyType = {
+export const initialFieldsState: ShortPropertyType = {
   name: "",
   type: "",
   description: "",

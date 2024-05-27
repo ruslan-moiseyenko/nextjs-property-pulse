@@ -1,77 +1,14 @@
 "use client";
 import { PropertyType } from "@/components/PropertyCard";
+import { initialFieldsState } from "@/components/PropertyEditForm";
 import { Spinner } from "@/components/Spinner";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
-
-export interface Location {
-  street: string;
-  city: string;
-  state: string;
-  zipcode: string;
-}
-
-export interface Rates {
-  weekly: string;
-  monthly: string;
-  nightly: string;
-}
-
-export interface SellerInfo {
-  name: string;
-  email: string;
-  phone: string;
-}
-
-export interface PropertyData {
-  type: string;
-  name: string;
-  description: string;
-  location: Location;
-  beds: string;
-  baths: string;
-  square_feet: string;
-  amenities: string[];
-  rates: Rates;
-  seller_info: SellerInfo;
-  images: File[];
-}
 
 export type ShortPropertyType = Omit<
   PropertyType,
   "_id" | "owner" | "is_featured" | "createdAt" | "updatedAt"
 >;
-const initialFieldsState: ShortPropertyType = {
-  name: "Historic Downtown Loft",
-  type: "Apartment",
-  description: "Step back in time with a stay in this historic downtown loft.",
-  location: {
-    street: "123 History Lane",
-    city: "Philadelphia",
-    state: "PA",
-    zipcode: "19101",
-  },
-  beds: "2",
-  baths: "1",
-  square_feet: "1200",
-  amenities: [
-    "High-Speed Internet",
-    "Air Conditioning",
-    "Smart TV",
-    "Coffee Maker",
-  ],
-  rates: {
-    weekly: "550",
-    monthly: "2100",
-    nightly: "",
-  },
-  seller_info: {
-    name: "Matthew Harris",
-    email: "matthew@gmail.com",
-    phone: "215-555-5555",
-  },
-  images: [],
-};
 
 export const propertyTypes = [
   "Apartment",
