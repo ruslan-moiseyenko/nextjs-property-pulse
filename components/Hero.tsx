@@ -1,4 +1,4 @@
-import PropertySearchForm from "@/components/PropertySearchForm";
+import { PropertySearchForm } from "@/components/PropertySearchForm";
 import React from "react";
 
 export const Hero = () => {
