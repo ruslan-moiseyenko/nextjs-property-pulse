@@ -36,3 +36,34 @@ export const PUT = async (request: Request, { params }: { params: Params }) => {
     console.log("🚀 ~ GET ~ error while getting a message:", error);
   }
 };
+
+export const DELETE = async (
+  request: Request,
+  { params }: { params: Params },
+) => {
+  try {
+    await connectDB();
+    const { id } = params;
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser?.id) {
+      return new Response("User ID is required.", {
+        status: 401,
+      });
+    }
+
+    const message = await Message.findById(id);
+    if (!message) return new Response("Message not found", { status: 404 });
+
+    // verify ownership
+    if (message.recipient.toString() !== sessionUser.id) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+
+    await message.deleteOne();
+
+    return new Response("Message deleted", { status: 200 });
+  } catch (error) {
+    console.log("🚀 ~ GET ~ error while getting a message:", error);
+  }
+};

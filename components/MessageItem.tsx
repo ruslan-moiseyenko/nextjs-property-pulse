@@ -23,6 +23,7 @@ type MessageItemProps = {
 
 export function MessageItem({ message }: MessageItemProps): JSX.Element {
   const [isRead, setIsRead] = useState(message.read);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleReadClick = async () => {
     try {
@@ -45,6 +46,27 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
       console.log("🚀 ~ handleReadClick ~ error:", error);
     }
   };
+  const handleDeleteClick = async () => {
+    try {
+      const response = await fetch(`/api/messages/${message._id}`, {
+        method: "DELETE",
+      });
+
+      if (response.status !== 200) {
+        toast.error("Could not delete message");
+        throw new Error("Failed to delete message");
+      }
+
+      setIsDeleted(true);
+      toast.success("Message deleted");
+    } catch (error) {
+      console.log("🚀 ~ handleReadClick ~ error:", error);
+    }
+  };
+
+  if (isDeleted) {
+    return <></>;
+  }
 
   return (
     <div className="relative rounded-md border border-gray-200 bg-white p-4 shadow-md">
@@ -86,7 +108,10 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
       >
         {`Mark As ${isRead ? "Unread" : "Read"}`}
       </button>
-      <button className="mt-4 rounded-md bg-red-500 px-3 py-1 text-white">
+      <button
+        onClick={handleDeleteClick}
+        className="mt-4 rounded-md bg-red-500 px-3 py-1 text-white"
+      >
         Delete
       </button>
     </div>
