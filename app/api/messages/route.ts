@@ -4,17 +4,31 @@ import { getSessionUser } from "@/utils/getSessionUser";
 
 export const dynamic = "force-dynamic";
 
-export interface IMessage {
-  propertyId: string;
-  recipient: string;
-  name: string;
-  email: string;
-  sender: string;
-  phone?: string;
-  body?: string;
-  read?: boolean;
-}
+//GET /api/messages
+export const GET = async (request: Request) => {
+  try {
+    await connectDB();
 
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser?.id) {
+      return new Response(JSON.stringify("User ID is required."), {
+        status: 401,
+      });
+    }
+
+    const { id: userId } = sessionUser;
+
+    const messages = await Message.find({ recipient: userId })
+      .populate("sender", "username")
+      .populate("property", "name");
+
+    return new Response(JSON.stringify(messages), { status: 200 });
+  } catch (error) {
+    console.log("🚀 ~ GET ~ error while getting messages:", error);
+    return new Response("Something went wrong...", { status: 500 });
+  }
+};
 //POST /api/messages
 export const POST = async (request: Request) => {
   try {
