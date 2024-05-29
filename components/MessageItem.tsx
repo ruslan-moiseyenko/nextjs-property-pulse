@@ -1,7 +1,8 @@
 "use client";
 
 import { dateFormat } from "@/utils/dateFormat";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useGlobalContext } from "@/context/GlobalContext";
 import { toast } from "react-toastify";
 
 export type MessageType = {
@@ -24,6 +25,7 @@ type MessageItemProps = {
 export function MessageItem({ message }: MessageItemProps): JSX.Element {
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
+  const { setUnreadCount } = useGlobalContext();
 
   const handleReadClick = async () => {
     try {
@@ -42,6 +44,9 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
       const { read } = await response.json();
 
       setIsRead(read);
+      setUnreadCount((prevCount: number) =>
+        read ? prevCount - 1 : prevCount + 1,
+      );
     } catch (error) {
       console.log("🚀 ~ handleReadClick ~ error:", error);
     }
@@ -58,6 +63,10 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
       }
 
       setIsDeleted(true);
+      console.log("🚀 ~ handleDeleteClick ~ message.read:", message.read);
+      setUnreadCount((prevCount: number) =>
+        isRead ? prevCount : prevCount - 1,
+      );
       toast.success("Message deleted");
     } catch (error) {
       console.log("🚀 ~ handleReadClick ~ error:", error);
