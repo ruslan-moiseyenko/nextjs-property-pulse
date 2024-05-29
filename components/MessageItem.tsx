@@ -63,7 +63,6 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
       }
 
       setIsDeleted(true);
-      console.log("🚀 ~ handleDeleteClick ~ message.read:", message.read);
       setUnreadCount((prevCount: number) =>
         isRead ? prevCount : prevCount - 1,
       );
