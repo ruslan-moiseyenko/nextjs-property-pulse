@@ -7,6 +7,7 @@ import profileDefault from "@/assets/images/profile.png";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { UnreadMessagesCount } from "@/components/UnreadMessagesCount";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -148,10 +149,7 @@ export const Navbar = () => {
                   />
                 </svg>
               </button>
-              <span className="absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-white">
-                2
-                {/* <!-- Replace with the actual number of notifications --> */}
-              </span>
+              <UnreadMessagesCount session={session} />
             </Link>
             {/* <!-- Profile dropdown button --> */}
             <div className="relative ml-3">
