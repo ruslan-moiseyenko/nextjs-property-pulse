@@ -4,13 +4,25 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import cloudinary from "@/config/cloudinary";
 import { NextRequest } from "next/server";
 
-export const GET = async (request: Request) => {
+export const GET = async (request: NextRequest) => {
   try {
     await connectDB();
 
-    const properties = await Property.find({});
+    const page = request.nextUrl.searchParams.get("page") || 1;
+    const pageSize = request.nextUrl.searchParams.get("pageSize") || 9;
+    const skip = (+page - 1) * +pageSize;
 
-    return new Response(JSON.stringify(properties), { status: 200 });
+    const total = await Property.countDocuments({});
+
+    // pagination
+    const properties = await Property.find({}).skip(skip).limit(+pageSize);
+
+    const result = {
+      total,
+      properties,
+    };
+
+    return new Response(JSON.stringify(result), { status: 200 });
   } catch (err) {
     return new Response("Something went wrong...", { status: 500 });
   }

@@ -2,9 +2,13 @@ import { PropertyType } from "@/components/PropertyCard";
 
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
 
+const emptyResponse = { properties: [], total: 0 };
+
 //fetch all properties
-export async function fetchProperties(): Promise<PropertyType[] | undefined> {
-  if (!apiDomain) return [];
+export async function fetchProperties(): Promise<
+  { properties: PropertyType[]; total: number } | undefined
+> {
+  if (!apiDomain) return emptyResponse;
 
   try {
     const res = await fetch(`${apiDomain}properties`, { cache: "no-store" });
@@ -15,7 +19,7 @@ export async function fetchProperties(): Promise<PropertyType[] | undefined> {
     return res.json();
   } catch (err) {
     console.error(err);
-    return [];
+    return emptyResponse;
   }
 }
 

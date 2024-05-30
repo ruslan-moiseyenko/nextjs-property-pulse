@@ -2,18 +2,25 @@
 import { PropertyCard, PropertyType } from "@/components/PropertyCard";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "@/components/Spinner";
+import { Pagination } from "@/components/Pagination";
 
 export const Properties = () => {
   const [properties, setProperties] = useState<PropertyType[]>();
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(6);
+  const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch("/api/properties");
+        const response = await fetch(
+          `/api/properties?page=${page}&pageSize=${pageSize}`,
+        );
         if (response.status === 200) {
           const data = await response.json();
-          setProperties(data);
+          setProperties(data.properties);
+          setTotalItems(data.total);
         } else {
           console.log(response.status);
         }
@@ -25,7 +32,11 @@ export const Properties = () => {
     };
 
     fetchProperties();
-  }, []);
+  }, [page, pageSize]);
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
 
   return isLoading ? (
     <Spinner />
@@ -42,6 +53,12 @@ export const Properties = () => {
           </div>
         )}
       </div>
+      <Pagination
+        page={page}
+        pageSize={pageSize}
+        totalItems={totalItems}
+        onPageChange={handlePageChange}
+      />
     </section>
   );
 };

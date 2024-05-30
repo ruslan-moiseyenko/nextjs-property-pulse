@@ -4,21 +4,19 @@ import Link from "next/link";
 import { fetchProperties } from "@/utils/requests";
 
 export const HomeProperties = async () => {
-  const properties = await fetchProperties();
+  const propertiesData = await fetchProperties();
 
-  properties?.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
-
-  const resentProperties = properties
+  const resentProperties = propertiesData?.properties
     ?.sort(() => Math.random() - Math.random())
     .slice(0, 3);
   return (
     <div>
       <section className="px-4 py-6">
-        <div className="container-xl lg:container m-auto">
-          <h2 className="text-3xl font-bold text-blue-500 mb-6 text-center">
+        <div className="container-xl m-auto lg:container">
+          <h2 className="mb-6 text-center text-3xl font-bold text-blue-500">
             Recent Properties
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {resentProperties?.length === 0 ? (
               <p>Nothing found</p>
             ) : (
@@ -29,10 +27,10 @@ export const HomeProperties = async () => {
           </div>
         </div>
       </section>
-      <section className="m-auto max-w-lg my-10 px-6">
+      <section className="m-auto my-10 max-w-lg px-6">
         <Link
           href="/properties"
-          className="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
+          className="block rounded-xl bg-black px-6 py-4 text-center text-white hover:bg-gray-700"
         >
           View All Properties
         </Link>
