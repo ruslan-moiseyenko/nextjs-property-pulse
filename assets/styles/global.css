@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 0 0 0;
+    --color-secondary: 255 255 255;
+
+    --color-button-primary: 60 130 246;
+    --color-button-hover: 92 102 118;
+
+    --color-bg-primary: 255 255 255;
+    --color-bg-secondary: 219 233 254;
+    --color-bg-tertiary: 243 244 246;
+
+    --color-accent: 28 78 216;
+
+    --color-white: 255 255 255;
+    --color-black: 0 0 0;
+  }
+}
