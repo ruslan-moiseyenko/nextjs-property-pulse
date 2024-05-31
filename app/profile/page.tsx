@@ -97,6 +97,7 @@ const ProfilePage = () => {
                     <Link href={`/property/${item._id}`}>
                       <Image
                         className="h-32 w-full rounded-md object-cover"
+                        // @ts-ignore
                         src={item.images[0]}
                         alt=""
                         width={500}
