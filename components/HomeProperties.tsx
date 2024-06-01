@@ -13,7 +13,7 @@ export const HomeProperties = async () => {
     <div>
       <section className="px-4 py-6">
         <div className="container-xl m-auto lg:container">
-          <h2 className="mb-6 text-center text-3xl font-bold text-blue-500">
+          <h2 className="mb-6 text-center text-3xl font-bold text-blue-100">
             Recent Properties
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

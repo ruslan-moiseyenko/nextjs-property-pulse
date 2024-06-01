@@ -11,7 +11,7 @@ export type PropertyInfoType = {
 
 export const PropertyInfo: FC<PropertyInfoType> = ({ property }) => {
   return (
-    <section className="bg-blue-50">
+    <section className="bg-blue-100">
       <div className="container m-auto px-6 py-10">
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-70/30">
           <PropertyDetails property={property} />

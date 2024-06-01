@@ -29,7 +29,7 @@ export const PropertyDetails: FC<PropertyInfoType> = ({ property }) => {
         <div className="flex flex-col justify-around md:flex-row">
           <div className="mb-4 flex items-center justify-center border-b border-gray-200 pb-4 md:border-b-0 md:pb-0">
             <div className="mr-2 font-bold text-gray-500">Nightly</div>
-            <div className="text-2xl font-bold text-blue-500">
+            <div className="text-2xl font-bold text-blue-100">
               {property.rates.nightly ? (
                 `$${property.rates.nightly.toLocaleString()}`
               ) : (
@@ -39,7 +39,7 @@ export const PropertyDetails: FC<PropertyInfoType> = ({ property }) => {
           </div>
           <div className="mb-4 flex items-center justify-center border-b border-gray-200 pb-4 md:border-b-0 md:pb-0">
             <div className="mr-2 font-bold text-gray-500">Weekly</div>
-            <div className="text-2xl font-bold text-blue-500">
+            <div className="text-2xl font-bold text-blue-100">
               {property.rates.weekly ? (
                 `$${property.rates.weekly.toLocaleString()}`
               ) : (
@@ -49,7 +49,7 @@ export const PropertyDetails: FC<PropertyInfoType> = ({ property }) => {
           </div>
           <div className="mb-4 flex items-center justify-center pb-4 md:pb-0">
             <div className="mr-2 font-bold text-gray-500">Monthly</div>
-            <div className="text-2xl font-bold text-blue-500">
+            <div className="text-2xl font-bold text-blue-100">
               {property.rates.monthly ? (
                 `$${property.rates.monthly.toLocaleString()}`
               ) : (
@@ -62,7 +62,7 @@ export const PropertyDetails: FC<PropertyInfoType> = ({ property }) => {
 
       <div className="mt-6 rounded-lg bg-white p-6 shadow-md">
         <h3 className="mb-6 text-lg font-bold">Description & Details</h3>
-        <div className="mb-4 flex justify-center gap-4 space-x-9 text-xl text-blue-500">
+        <div className="mb-4 flex justify-center gap-4 space-x-9 text-xl text-blue-100">
           <p>
             <FaBed className="mr-2 inline-block" />
             {`${property.beds} `}

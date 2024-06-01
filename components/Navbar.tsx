@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { UnreadMessagesCount } from "@/components/UnreadMessagesCount";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,10 +28,6 @@ export const Navbar = () => {
 
     setAuthProviders();
   }, []);
-
-  // useEffect(() => {
-  //   console.log("Providers: ", providers, session);
-  // }, [session, providers]);
 
   return (
     <nav className="border-b border-blue-500 bg-blue-700">
@@ -127,6 +124,7 @@ export const Navbar = () => {
 
           {/* <!-- Right Side Menu (Logged In) --> */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+            <ThemeSwitcher />
             <Link href="messages" className="group relative">
               <button
                 type="button"

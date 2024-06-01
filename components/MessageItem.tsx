@@ -96,13 +96,13 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
 
         <li>
           <strong>{`Reply Email: `}</strong>
-          <a href={`mailto:${message.email}`} className="text-blue-500">
+          <a href={`mailto:${message.email}`} className="text-blue-100">
             {message.email}
           </a>
         </li>
         <li>
           <strong>{`Reply Phone: `}</strong>
-          <a href={`tel:${message.phone}`} className="text-blue-500">
+          <a href={`tel:${message.phone}`} className="text-blue-100">
             {message.phone}
           </a>
         </li>
@@ -112,7 +112,7 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
       </ul>
       <button
         onClick={handleReadClick}
-        className={`${isRead ? "bg-gray-500" : "bg-blue-500  text-white"} mr-3 mt-4 rounded-md px-3 py-1`}
+        className={`${isRead ? "bg-gray-500" : "bg-blue-100  text-white"} mr-3 mt-4 rounded-md px-3 py-1`}
       >
         {`Mark As ${isRead ? "Unread" : "Read"}`}
       </button>

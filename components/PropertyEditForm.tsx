@@ -234,7 +234,7 @@ export const PropertyEditForm = () => {
             ></textarea>
           </div>
 
-          <div className="mb-4 bg-blue-50 p-4">
+          <div className="mb-4 bg-blue-100 p-4">
             <label className="mb-2 block font-bold text-gray-700">
               Location
             </label>
@@ -526,7 +526,7 @@ export const PropertyEditForm = () => {
             </div>
           </div>
 
-          <div className="mb-4 bg-blue-50 p-4">
+          <div className="mb-4 bg-blue-100 p-4">
             <label className="mb-2 block font-bold text-gray-700">
               Rates (Leave blank if not applicable)
             </label>
@@ -646,7 +646,7 @@ export const PropertyEditForm = () => {
 
           <div>
             <button
-              className="focus:shadow-outline w-full rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
+              className="focus:shadow-outline w-full rounded-full bg-blue-100 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
               type="submit"
             >
               Update Property

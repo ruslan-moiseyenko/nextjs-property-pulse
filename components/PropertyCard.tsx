@@ -74,7 +74,7 @@ export const PropertyCard: FC<PropertyPageType> = ({ property }) => {
           <div className="text-gray-600">{property.type}</div>
           <h3 className="text-xl font-bold">{property.name}</h3>
         </div>
-        <h3 className="absolute right-[10px] top-[10px] rounded-lg bg-white px-4 py-2 text-right font-bold text-blue-500 md:text-center lg:text-right">
+        <h3 className="absolute right-[10px] top-[10px] rounded-lg bg-white px-4 py-2 text-right font-bold text-blue-100 md:text-center lg:text-right">
           ${getRateDisplay()}
         </h3>
 
@@ -126,7 +126,7 @@ export const PropertyCard: FC<PropertyPageType> = ({ property }) => {
           </div>
           <Link
             href={`/properties/${property._id}`}
-            className="h-[36px] rounded-lg bg-blue-500 px-4 py-2 text-center text-sm text-white hover:bg-blue-600"
+            className="h-[36px] rounded-lg bg-blue-100 px-4 py-2 text-center text-sm text-white hover:bg-blue-600"
           >
             Details
           </Link>

@@ -55,7 +55,7 @@ const SearchResultsPage = () => {
           <div className="container-xl m-auto px-4 py-6 lg:container">
             <Link
               href="/properties"
-              className="mb-3 flex items-center text-blue-500 hover:underline"
+              className="mb-3 flex items-center text-blue-100 hover:underline"
             >
               <FaArrowAltCircleLeft className="mb-1 mr-2" />
               Back To Properties
