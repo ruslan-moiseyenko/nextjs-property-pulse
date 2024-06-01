@@ -23,7 +23,7 @@ export const PropertyDetails: FC<PropertyInfoType> = ({ property }) => {
           </p>
         </div>
 
-        <h3 className="my-6 bg-gray-800 p-2 text-lg font-bold text-white">
+        <h3 className="my-6 bg-gray-800 p-2 text-lg font-bold text-primary">
           Rates & Options
         </h3>
         <div className="flex flex-col justify-around md:flex-row">

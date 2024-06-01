@@ -75,7 +75,7 @@ export const ButtonBookmark: FC<ButtonBookmarkProps> = ({ property }) => {
     return (
       <button
         onClick={handleClick}
-        className={`flex w-full items-center justify-center rounded-full  px-4 py-2 font-bold text-black outline`}
+        className={`flex w-full items-center justify-center rounded-full  px-4 py-2 font-bold text-secondary outline`}
       >
         Loading...
       </button>
@@ -84,7 +84,7 @@ export const ButtonBookmark: FC<ButtonBookmarkProps> = ({ property }) => {
   return (
     <button
       onClick={handleClick}
-      className={`flex w-full items-center justify-center rounded-full  ${isBookmarked ? "bg-red-500 hover:bg-red-600" : "bg-blue-100 hover:bg-blue-600"} px-4 py-2 font-bold text-white `}
+      className={`flex w-full items-center justify-center rounded-full  ${isBookmarked ? "bg-red-500 hover:bg-red-600" : "bg-blue-100 hover:bg-blue-600"} px-4 py-2 font-bold text-primary `}
     >
       <FaBookmark className=" mr-2"></FaBookmark>
       {isBookmarked ? "Delete From Bookmarks" : "Bookmark Property"}

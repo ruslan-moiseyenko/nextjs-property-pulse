@@ -28,7 +28,7 @@ module.exports = {
         accent_light: "rgb(var(--color-button_primary) / <alpha-value>)",
 
         white: "rgb(var(--color-white) / <alpha-value>)",
-        white: "rgb(var(--color-white) / <alpha-value>)",
+        black: "rgb(var(--color-black) / <alpha-value>)",
       },
     },
   },

@@ -115,12 +115,12 @@ const ProfilePage = () => {
                     <div className="mt-2">
                       <Link
                         href={`/properties/${item._id}/edit`}
-                        className="mr-2 rounded-md bg-blue-100 px-3 py-3 text-white hover:bg-blue-600"
+                        className="mr-2 rounded-md bg-blue-100 px-3 py-3 text-primary hover:bg-blue-600"
                       >
                         Edit
                       </Link>
                       <button
-                        className="rounded-md bg-red-500 px-3 py-2 text-white hover:bg-red-600"
+                        className="rounded-md bg-red-500 px-3 py-2 text-primary hover:bg-red-600"
                         type="button"
                         onClick={() => handleDeleteProperty(item._id)}
                       >
@@ -148,12 +148,12 @@ const ProfilePage = () => {
                 <div className="mt-2">
                   <Link
                     href="/add-property"
-                    className="mr-2 rounded-md bg-blue-100 px-3 py-3 text-white hover:bg-blue-600"
+                    className="mr-2 rounded-md bg-blue-100 px-3 py-3 text-primary hover:bg-blue-600"
                   >
                     Edit
                   </Link>
                   <button
-                    className="rounded-md bg-red-500 px-3 py-2 text-white hover:bg-red-600"
+                    className="rounded-md bg-red-500 px-3 py-2 text-primary hover:bg-red-600"
                     type="button"
                   >
                     Delete

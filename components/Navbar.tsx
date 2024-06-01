@@ -38,7 +38,7 @@ export const Navbar = () => {
             <button
               type="button"
               id="mobile-dropdown-button"
-              className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -67,7 +67,7 @@ export const Navbar = () => {
             <Link className="flex flex-shrink-0 items-center" href="/">
               <Image className="h-10 w-auto" src={logo} alt="PropertyPulse" />
 
-              <span className="ml-2 hidden text-2xl font-bold text-white md:block">
+              <span className="ml-2 hidden text-2xl font-bold text-primary md:block">
                 PropertyPulse
               </span>
             </Link>
@@ -78,7 +78,7 @@ export const Navbar = () => {
                   href="/"
                   className={`${
                     pathname === "/" ? "bg-black" : ""
-                  } rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white`}
+                  } rounded-md px-3 py-2 text-secondary hover:bg-button_hover hover:text-secondary`}
                 >
                   Home
                 </Link>
@@ -86,7 +86,7 @@ export const Navbar = () => {
                   href="/properties"
                   className={`${
                     pathname === "/properties" ? "bg-black" : ""
-                  } rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white`}
+                  } rounded-md px-3 py-2 text-secondary hover:bg-button_hover hover:text-secondary`}
                 >
                   Properties
                 </Link>
@@ -95,7 +95,7 @@ export const Navbar = () => {
                     href="/properties/add"
                     className={`${
                       pathname === "/properties/add" ? "bg-black" : ""
-                    } rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white`}
+                    } rounded-md px-3 py-2 text-secondary hover:bg-button_hover hover:text-secondary`}
                   >
                     Add Property
                   </Link>
@@ -113,9 +113,9 @@ export const Navbar = () => {
                   <button
                     key={index}
                     onClick={() => signIn(provider.id)}
-                    className="flex items-center rounded-md bg-gray-700 px-3 py-2 text-white hover:bg-gray-900 hover:text-white"
+                    className="flex items-center rounded-md bg-gray-700 px-3 py-2 text-primary hover:bg-button_hover hover:text-primary"
                   >
-                    <FaGoogle className="mr-2 text-white" />
+                    <FaGoogle className="mr-2 text-primary" />
                     <span>Login or Register</span>
                   </button>
                 ))}
@@ -128,7 +128,7 @@ export const Navbar = () => {
             <Link href="messages" className="group relative">
               <button
                 type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               >
                 <span className="absolute -inset-1.5"></span>
                 <span className="sr-only">View notifications</span>
@@ -229,7 +229,7 @@ export const Navbar = () => {
               href="/"
               className={`${
                 pathname === "/" ? "bg-black" : ""
-              } rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white`}
+              } rounded-md px-3 py-2 text-primary hover:bg-button_hover hover:text-primary`}
             >
               Home
             </Link>
@@ -237,7 +237,7 @@ export const Navbar = () => {
               href="/properties"
               className={`${
                 pathname === "/properties" ? "bg-black" : ""
-              } rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white`}
+              } rounded-md px-3 py-2 text-primary hover:bg-button_hover hover:text-primary`}
             >
               Properties
             </Link>
@@ -246,7 +246,7 @@ export const Navbar = () => {
                 href="/properties/add"
                 className={`${
                   pathname === "/properties/add" ? "bg-black" : ""
-                } rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white`}
+                } hover:bg-button_hoverhover:text-primary rounded-md px-3 py-2 text-primary`}
               >
                 Add Property
               </Link>
@@ -258,7 +258,7 @@ export const Navbar = () => {
                 <button
                   key={index}
                   onClick={() => signIn(provider.id)}
-                  className="flex items-center rounded-md bg-gray-700 px-3 py-2 text-white hover:bg-gray-900 hover:text-white"
+                  className="flex items-center rounded-md bg-gray-700 px-3 py-2 text-primary hover:bg-button_hover hover:text-primary"
                 >
                   <span>Login or Register</span>
                 </button>

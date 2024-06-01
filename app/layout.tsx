@@ -23,7 +23,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
         <html lang="en">
           <body
             suppressHydrationWarning={true}
-            className="flex min-h-screen flex-col"
+            className="flex min-h-screen flex-col bg-bg_primary"
           >
             <Navbar />
             <main>{children}</main>

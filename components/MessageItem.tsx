@@ -79,7 +79,7 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
   return (
     <div className="relative rounded-md border border-gray-200 bg-white p-4 shadow-md">
       {!isRead && (
-        <div className="absolute right-2 top-2 rounded-md bg-yellow-500 px-1 py-1 text-white">
+        <div className="absolute right-2 top-2 rounded-md bg-yellow-500 px-1 py-1 text-primary">
           New
         </div>
       )}
@@ -112,13 +112,13 @@ export function MessageItem({ message }: MessageItemProps): JSX.Element {
       </ul>
       <button
         onClick={handleReadClick}
-        className={`${isRead ? "bg-gray-500" : "bg-blue-100  text-white"} mr-3 mt-4 rounded-md px-3 py-1`}
+        className={`${isRead ? "bg-gray-500" : "bg-blue-100  text-primary"} mr-3 mt-4 rounded-md px-3 py-1`}
       >
         {`Mark As ${isRead ? "Unread" : "Read"}`}
       </button>
       <button
         onClick={handleDeleteClick}
-        className="mt-4 rounded-md bg-red-500 px-3 py-1 text-white"
+        className="mt-4 rounded-md bg-red-500 px-3 py-1 text-primary"
       >
         Delete
       </button>

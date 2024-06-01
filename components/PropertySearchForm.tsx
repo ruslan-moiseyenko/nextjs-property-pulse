@@ -60,7 +60,7 @@ export function PropertySearchForm() {
       </div>
       <button
         type="submit"
-        className="mt-4 w-full rounded-lg bg-blue-100 px-6 py-3 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-100 md:ml-4 md:mt-0 md:w-auto"
+        className="mt-4 w-full rounded-lg bg-blue-100 px-6 py-3 text-primary hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-100 md:ml-4 md:mt-0 md:w-auto"
       >
         Search
       </button>

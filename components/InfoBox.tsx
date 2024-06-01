@@ -17,15 +17,15 @@ export const InfoBox: FC<InfoBoxType> = ({
   textColor = "text-gray-800",
   buttonInfo,
   heading,
-  children
+  children,
 }) => {
   return (
-    <div className={`${backgroundColor} p-6 rounded-lg shadow-md`}>
+    <div className={`${backgroundColor} rounded-lg p-6 shadow-md`}>
       <h2 className={`${textColor} text-2xl font-bold`}>{heading}</h2>
-      <p className={`${textColor} mt-2 mb-4`}>{children}</p>
+      <p className={`${textColor} mb-4 mt-2`}>{children}</p>
       <a
         href={buttonInfo.link}
-        className={`${buttonInfo.backgroundColor} inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700 hover:opacity-80`}
+        className={`${buttonInfo.backgroundColor} inline-block rounded-lg bg-black px-4 py-2 text-primary hover:bg-gray-700 hover:opacity-80`}
       >
         {buttonInfo.text}
       </a>

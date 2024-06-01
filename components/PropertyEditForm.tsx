@@ -646,7 +646,7 @@ export const PropertyEditForm = () => {
 
           <div>
             <button
-              className="focus:shadow-outline w-full rounded-full bg-blue-100 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
+              className="focus:shadow-outline w-full rounded-full bg-blue-100 px-4 py-2 font-bold text-primary hover:bg-blue-600 focus:outline-none"
               type="submit"
             >
               Update Property

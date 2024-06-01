@@ -92,7 +92,7 @@ export function FeaturedPropertyCard({ property }: FeaturedPropertiesProps) {
           </div>
           <Link
             href={`/properties/${property._id}`}
-            className="h-[36px] rounded-lg bg-blue-100 px-4 py-2 text-center text-sm text-white hover:bg-blue-600"
+            className="h-[36px] rounded-lg bg-blue-100 px-4 py-2 text-center text-sm text-primary hover:bg-blue-600"
           >
             Details
           </Link>
