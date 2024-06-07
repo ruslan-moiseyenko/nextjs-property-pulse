@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import "@/assets/styles/global.css";
+import { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/AuthProvider";
@@ -7,8 +7,9 @@ import { ToastContainer } from "react-toastify";
 import { GlobalProvider } from "@/context/GlobalContext";
 import "react-toastify/dist/ReactToastify.css";
 import "photoswipe/dist/photoswipe.css";
+import "@/assets/styles/global.css";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "PropertyPulse | Find the perfect Rental",
   description: "Find your dream renal property",
 };
